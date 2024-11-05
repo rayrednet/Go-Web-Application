@@ -9,6 +9,7 @@ import (
 )
 
 var validPath = regexp.MustCompile(`^/(edit|save|view)/([a-zA-Z0-9]+)$`)
+const port = "8080"
 
 // Page structure
 type Page struct {
@@ -111,6 +112,6 @@ func main() {
     http.HandleFunc("/monkeys", monkeysHandler)
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("tmpl"))))
 
-    fmt.Println("Starting server on http://localhost:8080")
-    http.ListenAndServe(":8080", nil)
+    fmt.Printf("Starting server on http://localhost:%s\n", port)
+	http.ListenAndServe(":"+port, nil)
 }
