@@ -1,2 +1,13 @@
-Hi this is the front page! in here u can do anything
-from starting a new page for example
+👋 Welcome to your Wiki Home Page!
+
+This is the main page of your wiki, your space to organize thoughts, ideas, and knowledge! 🧠✨ 
+
+You can start adding content by clicking the ✏️ "Edit" button above, or explore other pages as you build out your wiki.
+
+To create a new page, just type the page title in the URL bar or link to it within this text like "NewPage". 
+
+For example, visiting `http://localhost:8080/view/ANewPage` will take you to the page edit form. You can enter some text, click "Save," and be redirected to your newly created page! 🎉
+
+Let your imagination and knowledge flow freely! 🌈📚
+
+Happy wiki-ing! 🚀
