@@ -51,15 +51,56 @@ GO-WEB-APPLICATION/          # Main project directory
 │   └── new-page-view.png
 │
 └── README.md                # Documentation file for project overview
-
 ```
 
 ### Explanation of Structure
 
-- **`data/`**: This folder contains the `.txt` files for each page in the wiki. Each page’s content is saved as a separate file, allowing easy access and persistence of data.
-- **`tmpl/`**: Contains the HTML templates (`edit.html` and `view.html`) that render the page views in the browser. It also includes the `style.css` file for styling. While styles are served as static files, they are stored in `tmpl` to keep templates and related assets together for simplicity.
-- **`img/`**: This folder contains screenshots of different views of the application, which are displayed in this README for better understanding.
-- **`wiki.go`**: The main Go application file that includes all the logic for handling routes, loading and saving page data, and rendering templates.
+- **`gowiki/`**: This directory contains the core files for the Go Wiki application.
+  - **`data/`**: Stores the content of each wiki page in separate `.txt` files, allowing persistence across sessions.
+  - **`tmpl/`**: Holds HTML templates (`edit.html` and `view.html`) to render the application's user interface. It also includes `style.css` for styling. Although styles are served as static files, keeping them in `tmpl/` alongside templates organizes related UI components in one place.
+  - **`go.mod`**: Go module file that manages dependencies.
+  - **`wiki.go`**: Main Go file containing the application’s logic, including routing, page handling, and template rendering.
+  - **`TestPage.txt`**: An additional sample text file for testing purposes.
+
+- **`img/`**: Contains screenshots of the application views, which are referenced in the README for visual explanation.
+
+- **`README.md`**: This documentation file for the project, including setup instructions, file structure, and usage examples.
+
+
+## ⭐ How to Run This Repo
+
+To get started with this Go Wiki application, follow these steps:
+
+1. **Ensure Go is installed**:
+   - Make sure you have Go installed on your system. If you haven't installed it yet, download it from the official Go website: [https://go.dev/dl/](https://go.dev/dl/).
+
+2. **Clone the repository**:
+   - Clone this repo to your local machine using the following command:
+     ```bash
+     git clone git@github.com:rayrednet/Go-Web-Application.git
+     ```
+
+3. **Navigate to the project directory**:
+   - Change to the `gowiki` directory:
+     ```bash
+     cd Go-Web-Application/gowiki
+     ```
+
+4. **Run the application**:
+   - Start the application with:
+     ```bash
+     go run wiki.go
+     ```
+   - This will start a server, and you should see output like:
+     ```
+     Starting server on http://localhost:8080
+     ```
+
+5. **Explore the application**:
+   - Open your web browser and go to [http://localhost:8080](http://localhost:8080).
+   - From there, you can explore the wiki as described in the README. Create new pages, edit existing ones, and view saved content.
+
+And that’s it! You’re ready to use the Go Wiki web application. 🎉
 
 
 ##  ⭐ Screenshots and Application Flow
