@@ -18,12 +18,13 @@ type Page struct {
 
 // Method to save the Page's content to a file
 func (p *Page) save() error {
-    filename := p.Title + ".txt"
+    filename := "data/" + p.Title + ".txt"
     return os.WriteFile(filename, p.Body, 0600)
 }
 
+// Method to load the Page's content from a file
 func loadPage(title string) (*Page, error) {
-    filename := title + ".txt"
+    filename := "data/" + title + ".txt"
     body, err := os.ReadFile(filename)
     if err != nil {
         return nil, err
@@ -38,7 +39,10 @@ func viewHandler(w http.ResponseWriter, r *http.Request, title string) {
         http.Redirect(w, r, "/edit/"+title, http.StatusFound)
         return
     }
+	// Convert the page content to HTML links
+	p.Body = convertToLinks(p.Body)
     renderTemplate(w, "view", p)
+
 }
 
 // Handler to edit the page content
@@ -58,6 +62,7 @@ func saveHandler(w http.ResponseWriter, r *http.Request, title string) {
     http.Redirect(w, r, "/view/"+title, http.StatusFound)
 }
 
+// Function to create a handler for the given function
 func makeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.HandlerFunc {
     return func(w http.ResponseWriter, r *http.Request) {
         m := validPath.FindStringSubmatch(r.URL.Path)
@@ -69,11 +74,17 @@ func makeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.Handl
     }
 }
 
+// Handler to display a message for monkeys
 func monkeysHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, "Hi there, I love monkeys!")
 }
 
-var templates = template.Must(template.ParseFiles("edit.html", "view.html"))
+// Handler to redirect to the FrontPage
+func rootHandler(w http.ResponseWriter, r *http.Request) {
+    http.Redirect(w, r, "/view/FrontPage", http.StatusFound)
+}
+
+var templates = template.Must(template.ParseFiles("tmpl/edit.html", "tmpl/view.html"))
 
 func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
     err := templates.ExecuteTemplate(w, tmpl+".html", p)
@@ -82,11 +93,23 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
     }
 }
 
+// Function to convert the page content to HTML links
+func convertToLinks(text []byte) []byte {
+    linkRegexp := regexp.MustCompile(`\[(\w+)\]`)
+    return linkRegexp.ReplaceAllFunc(text, func(match []byte) []byte {
+        pageName := match[1 : len(match)-1] // Remove brackets
+        link := fmt.Sprintf(`<a href="/view/%s">%s</a>`, pageName, pageName)
+        return []byte(link)
+    })
+}
+
 func main() {
+	http.HandleFunc("/", rootHandler)
     http.HandleFunc("/view/", makeHandler(viewHandler))
     http.HandleFunc("/edit/", makeHandler(editHandler))
     http.HandleFunc("/save/", makeHandler(saveHandler))
     http.HandleFunc("/monkeys", monkeysHandler)
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("tmpl"))))
 
     fmt.Println("Starting server on http://localhost:8080")
     http.ListenAndServe(":8080", nil)
