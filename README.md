@@ -236,16 +236,24 @@ This Go wiki project is inspired by the official Go tutorial, which walks throug
      This approach allows us to keep URLs organized and separates static file paths from the folder structure on the server. It is a common pattern in web applications to manage static assets effectively.
 
 7. **Starting the Server**
-   - Finally, we set up a main function to start the server on `localhost:8080`, handling requests for viewing and editing pages.
+   - Finally, we set up a `main` function to start the server on a specified port (`localhost:8080` by default), handling requests for viewing, editing, saving pages, and serving static files.
+   - The server port is now stored in a variable, making it easy to adjust if needed.
 
    ```go
    func main() {
+       http.HandleFunc("/", rootHandler)
        http.HandleFunc("/view/", makeHandler(viewHandler))
        http.HandleFunc("/edit/", makeHandler(editHandler))
        http.HandleFunc("/save/", makeHandler(saveHandler))
-       log.Fatal(http.ListenAndServe(":8080", nil))
+       http.HandleFunc("/monkeys", monkeysHandler)
+       http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("tmpl"))))
+
+       fmt.Printf("Starting server on http://localhost:%s\n", port)
+       http.ListenAndServe(":"+port, nil)
    }
    ```
+
+   - This setup starts the server, which can be accessed by visiting `http://localhost:8080` in your web browser (or at any other port you configure in the `port` variable).
 
 ## ⭐ Final Thoughts
 
