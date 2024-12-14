@@ -1,4 +1,4 @@
-# Accessing Relational Database in Go
+# RESTful web service API using Go and the Gin
 
 ## ⭐ Project Overview
 This project demonstrates building a RESTful web service API using Go and the Gin Web Framework. It was developed as part of the **Pemrograman Berbasis Kerangka Kerja (D)** course and is inspired by the [official Go tutorial](https://go.dev/doc/tutorial/web-service-gin). The application showcases CRUD functionality for managing album records, providing a simple interface to interact with a dataset.
