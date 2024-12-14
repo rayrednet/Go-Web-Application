@@ -102,7 +102,7 @@ button:hover {
     background: #fb8c00;
 }
 #addAlbumButton {
-    background: #ff9800;
+    background: #5eac81;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -117,7 +117,7 @@ button:hover {
     margin-top: 10px;
 }
 #addAlbumButton:hover {
-    background: #fb8c00;
+    background: #3f865f;
 }
 #overlay {
     display: none;
@@ -136,44 +136,91 @@ footer {
     font-size: 14px;
 }
 
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    border: 2px solid #ff9800;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    width: 300px;
-    text-align: center;
-    padding: 20px;
-}
 
-.modal-content h2 {
-    color: #ff6f00;
-    margin-bottom: 10px;
-}
-
-.modal-content p {
-    font-size: 16px;
+.search-bar {
     margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
 }
 
-.modal-content button {
+.search-bar input {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #ffcc80;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.search-bar button {
     padding: 10px 20px;
-    background-color: #ff9800;
-    color: white;
     border: none;
     border-radius: 5px;
+    background: #ff9800;
+    color: white;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
+.search-bar button:hover {
+    background: #fb8c00;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #fff;
+    border: 2px solid #ff9800;
+    border-radius: 6px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    width: 200px; /* Reduced width for a smaller popup */
+    padding: 15px; /* Reduced padding */
+    animation: slide-in 0.3s ease-out;
+}
+
+.modal-content h2 {
+    color: #ff6f00;
+    margin: 0 0 10px 0;
+    font-size: 16px; /* Reduced font size */
+}
+
+.modal-content p {
+    font-size: 12px; /* Reduced font size for the paragraph */
+    margin: 0 0 10px 0;
+    color: #444;
+}
+
+.modal-content button {
+    padding: 6px 15px; /* Smaller button size */
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px; /* Reduced font size for the button */
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: inline-block;
+    text-align: left; /* Align button text left */
+}
+
 .modal-content button:hover {
     background-color: #fb8c00;
+}
+
+/* Slide-in animation */
+@keyframes slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

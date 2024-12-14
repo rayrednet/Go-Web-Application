@@ -14,6 +14,10 @@
     </header>
     <main>
         <h2 style="color: #ff6f00;">Albums</h2>
+        <div class="search-bar">
+            <input type="text" id="searchAlbumId" placeholder="Enter Album ID to Search" />
+            <button id="searchButton">Search</button>
+        </div>
         <button id="addAlbumButton">+ Add New Album</button>
         <ul id="albums"></ul>
 
@@ -47,6 +51,16 @@
                 <button id="closePopupButton">OK</button>
             </div>
         </div>
+
+        <!-- Album Not Found Popup -->
+        <div id="notFoundPopup" class="modal">
+            <div class="modal-content">
+                <h2>Album ID Not Found</h2>
+                <p>The album ID you are searching for does not exist.</p>
+                <button id="closeNotFoundPopupButton">OK</button>
+            </div>
+        </div>
+
     </main>
     <footer>
         <p>&copy; 2024 Albums API</p>
