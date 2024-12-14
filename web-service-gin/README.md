@@ -30,7 +30,7 @@ This project demonstrates building a RESTful web service API using Go and the Gi
      Starting server on http://localhost:8080
      ```
 
-## ⭐ Features and Application Flow
+## ⭐ Features Screenshots and Application Flow
 
 ### 1. Initial View
    - When you access [http://localhost:8080](http://localhost:8080), you'll see the home page displaying a list of 3 default albums loaded from the backend.
@@ -45,11 +45,6 @@ This project demonstrates building a RESTful web service API using Go and the Gi
 
    - A confirmation popup will appear, and the new album will be displayed in the list.
      ![Album Added](img/album-added.png)
-
-### 3. Deleting an Album
-   - Each album in the list includes a **Delete** button.
-   - Clicking this button removes the album from the backend and updates the list dynamically.
-
 
 ## ⭐ Code Flow Explanation
 
@@ -75,21 +70,6 @@ This project demonstrates building a RESTful web service API using Go and the Gi
 
 - Adding albums:
   - The `addAlbum` function sends a `POST` request to add a new album.
-
-## ⭐ Screenshots
-
-### 1. Home Page
-![Index Page](img/index.png)
-
-### 2. Add Album Popup
-![Form Popup](img/popup-form.png)
-
-### 3. Filled Form
-![Filled Form](img/popup-filled.png)
-
-### 4. Confirmation Popup
-![Album Added](img/album-added.png)
-
 
 ## ⭐ Conclusion
 This project serves as a basic example of building RESTful APIs with Go and Gin. It demonstrates how to implement simple data retrieval and addition functionalities, connect the frontend with a backend API, and handle user interactions effectively. Future enhancements could include implementing update and delete features, database integration, and more complex functionalities.
