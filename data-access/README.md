@@ -104,6 +104,7 @@ After running `main.go`, the output should look like this:
      ```
 
    - This result is obtained from the following code snippet. By providing the artist name `"John Coltrane"`, the query retrieves two entries. Each entry includes the ID of the album, the album name, the selected artist, and the album's price:
+
    ```go
    // Fetch albums by a specific artist
    albums, err := albumsByArtist("John Coltrane")
@@ -121,14 +122,15 @@ After running `main.go`, the output should look like this:
      ```
 
    - The following code snippet demonstrates how the album is fetched. By providing ID `2`, the function `albumByID(2)` retrieves the album details, including the ID, title, artist, and price, as shown in the output above:
-    ```go
-    // Fetch an album by ID
-    alb, err := albumByID(2)
-    if err != nil {
-        log.Fatalf("Error fetching album: %v", err)
-    }
-    fmt.Printf("Album found: %v\n", alb)
-    ```
+
+     ```go
+     // Fetch an album by ID
+     alb, err := albumByID(2)
+     if err != nil {
+         log.Fatalf("Error fetching album: %v", err)
+     }
+     fmt.Printf("Album found: %v\n", alb)
+     ```
 
 #### 5. **Add New Album**
    - Inserts a new album into the `album` table and prints the new record's ID. The output indicates the ID of the newly created album:
@@ -136,6 +138,7 @@ After running `main.go`, the output should look like this:
      ID of added album: 5
      ```
    - This is achieved with the following code snippet. Here, a new album with a `title`, `artist`, and `price` is added to the database, and the resulting ID is printed. Since there are initially 4 entries, the new album gets assigned ID 5:
+
    ```go
    // Add a new album
    newAlbum := Album{
