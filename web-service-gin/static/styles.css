@@ -6,14 +6,23 @@ body {
     color: #444;
 }
 header {
-    background: #C6FFDD;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #f7797d, #FBD786, #C6FFDD);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #f7797d, #FBD786, #C6FFDD); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #f7797d, #FBD786, #C6FFDD);
     color: white;
     padding: 20px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+header .header-link {
+    text-decoration: none; /* Remove underline */
+    color: white; /* Ensure the link color matches the header text */
+    display: inline-block; /* Maintain block behavior for alignment */
+}
+
+header .header-link:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
+
 h1 {
     margin: 0;
     font-size: 2.5rem;
@@ -223,4 +232,46 @@ footer {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.album-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.album-card {
+    background-color: #ffe0b2;
+    border: 1px solid #ffcc80;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.album-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.album-card h3 {
+    font-size: 18px;
+    color: #ff6f00;
+    margin-bottom: 10px;
+}
+
+.album-card p {
+    font-size: 14px;
+    margin: 5px 0;
+    color: #444;
+}
+
+.album-card .album-price {
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
 }

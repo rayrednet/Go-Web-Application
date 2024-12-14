@@ -17,10 +17,11 @@ async function searchAlbum() {
     const albumId = searchInput.value.trim();
     const messageElement = document.getElementById('searchMessage');
 
-    // Clear previous message
+    // Clear previous message and cards
     if (messageElement) {
         messageElement.remove();
     }
+    albumsList.innerHTML = ''; // Clear the album list container
 
     if (!albumId) {
         alert('Please enter an album ID to search.');
@@ -39,17 +40,21 @@ async function searchAlbum() {
             newMessageElement.textContent = `Showing album with ID: ${albumId}`;
             albumsSection.insertBefore(newMessageElement, albumsList);
 
-            // Display the album
-            albumsList.innerHTML = `
-                <li>
-                    ID: ${album.id} - "${album.title}" by ${album.artist} - $${album.price.toFixed(2)}
-                </li>
+            // Create a card for the searched album
+            const card = document.createElement('div');
+            card.className = 'album-card';
+
+            card.innerHTML = `
+                <h3>${album.title}</h3>
+                <p><strong>Artist:</strong> ${album.artist}</p>
+                <p class="album-price"><strong>Price:</strong> $${album.price.toFixed(2)}</p>
+                <p><strong>ID:</strong> ${album.id}</p>
             `;
+
+            albumsList.appendChild(card);
         } else {
-            if (!response.ok) {
-                // Show "Album Not Found" popup
-                notFoundPopup.style.display = 'block';
-            }
+            // Show "Album Not Found" popup
+            notFoundPopup.style.display = 'block';
         }
     } catch (error) {
         console.error('Error searching album:', error);
@@ -70,11 +75,22 @@ async function fetchAlbums() {
     try {
         const response = await fetch(apiUrl);
         const albums = await response.json();
-        albumsList.innerHTML = ''; // Clear the album list
+        const albumsContainer = document.getElementById('albums');
+        albumsContainer.innerHTML = ''; // Clear the album list
+
         albums.forEach(album => {
-            const li = document.createElement('li');
-            li.textContent = `ID: ${album.id} - "${album.title}" by ${album.artist} - $${album.price.toFixed(2)}`;
-            albumsList.appendChild(li);
+            // Create a card for each album
+            const card = document.createElement('div');
+            card.className = 'album-card';
+
+            card.innerHTML = `
+                <h3>${album.title}</h3>
+                <p><strong>Artist:</strong> ${album.artist}</p>
+                <p class="album-price"><strong>Price:</strong> $${album.price.toFixed(2)}</p>
+                <p><strong>ID:</strong> ${album.id}</p>
+            `;
+
+            albumsContainer.appendChild(card);
         });
     } catch (error) {
         console.error('Error fetching albums:', error);
