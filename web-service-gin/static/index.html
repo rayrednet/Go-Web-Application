@@ -3,115 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Albums API Frontend</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        h1 {
-            color: #555;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            margin: 10px 0;
-            padding: 10px;
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        form {
-            margin: 20px 0;
-        }
-        input, button {
-            margin: 5px 0;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        button {
-            background: #4caf50;
-            color: white;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #45a049;
-        }
-    </style>
+    <title>Albums Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <h1>Albums</h1>
-    <ul id="albums"></ul>
+    <header>
+        <h1>Albums Collection</h1>
+    </header>
+    <main>
+        <h2 style="color: #ff6f00;">Albums</h2>
+        <button id="addAlbumButton">+ Add New Album</button>
+        <ul id="albums"></ul>
 
-    <h2>Add a New Album</h2>
-    <form id="addAlbumForm">
-        <input type="text" id="albumID" placeholder="ID" required />
-        <input type="text" id="albumTitle" placeholder="Title" required />
-        <input type="text" id="albumArtist" placeholder="Artist" required />
-        <input type="number" id="albumPrice" placeholder="Price" step="0.01" required />
-        <button type="submit">Add Album</button>
-    </form>
+        <div id="overlay"></div>
 
-    <script>
-        const apiUrl = 'http://localhost:8080/albums';
+        <form id="addAlbumForm">
+            <h2>Add a New Album</h2>
+            <div class="form-group">
+                <label for="albumTitle">Title</label>
+                <input type="text" id="albumTitle" placeholder="Album Title" required />
+            </div>
+            <div class="form-group">
+                <label for="albumArtist">Artist</label>
+                <input type="text" id="albumArtist" placeholder="Artist Name" required />
+            </div>
+            <div class="form-group">
+                <label for="albumPrice">Price</label>
+                <div class="input-with-symbol">
+                    <span>$</span>
+                    <input type="number" id="albumPrice" placeholder="Album Price" step="0.01" required />
+                </div>
+            </div>
+            <button type="submit">Add Album</button>
+        </form>
 
-        // Function to fetch and display all albums
-        async function fetchAlbums() {
-            try {
-                const response = await fetch(apiUrl);
-                const albums = await response.json();
-                const albumsList = document.getElementById('albums');
-                albumsList.innerHTML = '';
-                albums.forEach(album => {
-                    const li = document.createElement('li');
-                    li.textContent = `${album.id}: "${album.title}" by ${album.artist} - $${album.price}`;
-                    albumsList.appendChild(li);
-                });
-            } catch (error) {
-                console.error('Error fetching albums:', error);
-            }
-        }
-
-        // Function to add a new album
-        async function addAlbum(event) {
-            event.preventDefault();
-            const id = document.getElementById('albumID').value;
-            const title = document.getElementById('albumTitle').value;
-            const artist = document.getElementById('albumArtist').value;
-            const price = parseFloat(document.getElementById('albumPrice').value);
-
-            const newAlbum = { id, title, artist, price };
-
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(newAlbum),
-                });
-
-                if (response.ok) {
-                    fetchAlbums(); // Refresh the list after adding
-                    document.getElementById('addAlbumForm').reset();
-                } else {
-                    console.error('Failed to add album');
-                }
-            } catch (error) {
-                console.error('Error adding album:', error);
-            }
-        }
-
-        // Attach event listener to the form
-        document.getElementById('addAlbumForm').addEventListener('submit', addAlbum);
-
-        // Fetch and display albums when the page loads
-        fetchAlbums();
-    </script>
+        <!-- Confirmation Popup -->
+        <div id="confirmationPopup" class="modal">
+            <div class="modal-content">
+                <h2>Success!</h2>
+                <p>Album added successfully.</p>
+                <button id="closePopupButton">OK</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Albums API</p>
+    </footer>
+    <script src="/static/script.js"></script>
 </body>
 </html>
