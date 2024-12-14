@@ -105,14 +105,14 @@ After running `main.go`, the output should look like this:
 
    - This result is obtained from the following code snippet. By providing the artist name `"John Coltrane"`, the query retrieves two entries. Each entry includes the ID of the album, the album name, the selected artist, and the album's price:
 
-   ```go
-   // Fetch albums by a specific artist
-   albums, err := albumsByArtist("John Coltrane")
-   if err != nil {
-       log.Fatalf("Error fetching albums: %v", err)
-   }
-   fmt.Printf("Albums found: %v\n", albums)
-   ```
+        ```go
+        // Fetch albums by a specific artist
+        albums, err := albumsByArtist("John Coltrane")
+        if err != nil {
+            log.Fatalf("Error fetching albums: %v", err)
+        }
+        fmt.Printf("Albums found: %v\n", albums)
+        ```
 
 #### 4. **Fetch Album by ID**
    - Retrieves a single album by its ID (e.g., ID 2) and prints the result. This is the output after running `main.go` when fetching an album by ID:
@@ -139,19 +139,19 @@ After running `main.go`, the output should look like this:
      ```
    - This is achieved with the following code snippet. Here, a new album with a `title`, `artist`, and `price` is added to the database, and the resulting ID is printed. Since there are initially 4 entries, the new album gets assigned ID 5:
 
-   ```go
-   // Add a new album
-   newAlbum := Album{
-       Title:  "The Modern Sound of Betty Carter",
-       Artist: "Betty Carter",
-       Price:  49.99,
-   }
-   albID, err := addAlbum(newAlbum)
-   if err != nil {
-       log.Fatalf("Error adding album: %v", err)
-   }
-   fmt.Printf("ID of added album: %v\n", albID)
-   ```
+        ```go
+        // Add a new album
+        newAlbum := Album{
+            Title:  "The Modern Sound of Betty Carter",
+            Artist: "Betty Carter",
+            Price:  49.99,
+        }
+        albID, err := addAlbum(newAlbum)
+        if err != nil {
+            log.Fatalf("Error adding album: %v", err)
+        }
+        fmt.Printf("ID of added album: %v\n", albID)
+        ```
 
 ### 🗝️ Key Functions in `main.go`
 
